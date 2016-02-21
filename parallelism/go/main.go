@@ -35,4 +35,5 @@ func main() {
     wg.Wait()
     elapsed := time.Since(start);
     fmt.Printf("%d in %s", *taskCount, elapsed)
+    fmt.Println()
 }
