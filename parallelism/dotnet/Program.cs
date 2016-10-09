@@ -20,12 +20,24 @@ namespace ConsoleApplication
 
             var sw = Stopwatch.StartNew();
 
-            Parallel.For(0, taskCount, (i)=> {
-                var t = string.Format("Task {0} done!", i);
-            });
+            var tasks = new Task[taskCount];
+
+            for (int i = 0; i < tasks.Length; i++)
+            {
+                 tasks[i] = Task.Run(()=>Work(i));
+            }
+
+            // Parallel.For(0, taskCount, (i)=> {
+            //     var t = string.Format("Task {0} done!", i);
+            // });
+            Task.WaitAll(tasks);
 
             sw.Stop();
             Console.WriteLine("{0} in {1}", taskCount, sw.Elapsed);
+        }
+
+        private static void Work(int i){
+            var t = string.Format("Task {0} done!", i);
         }
     }
 }
