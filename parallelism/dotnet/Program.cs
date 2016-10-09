@@ -27,10 +27,11 @@ namespace ConsoleApplication
                  tasks[i] = Task.Run(()=>Work(i));
             }
 
+            Task.WaitAll(tasks);
+
             // Parallel.For(0, taskCount, (i)=> {
             //     var t = string.Format("Task {0} done!", i);
-            // });
-            Task.WaitAll(tasks);
+            // });            
 
             sw.Stop();
             Console.WriteLine("{0} in {1}", taskCount, sw.Elapsed);
