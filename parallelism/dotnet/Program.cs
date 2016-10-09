@@ -20,7 +20,7 @@ namespace ConsoleApplication
 
             var sw = Stopwatch.StartNew();
 
-            var tasks = new Task[taskCount];
+            var tasks = new Task<string>[taskCount];
 
             for (int i = 0; i < tasks.Length; i++)
             {
@@ -34,11 +34,12 @@ namespace ConsoleApplication
             // });            
 
             sw.Stop();
+            Console.WriteLine("{0}", tasks[0].Result);
             Console.WriteLine("{0} in {1}", taskCount, sw.Elapsed);
         }
 
-        private static void Work(int i){
-            var t = string.Format("Task {0} done!", i);
+        private static string Work(int i){
+            return string.Format("Task {0} done!", i);
         }
     }
 }
